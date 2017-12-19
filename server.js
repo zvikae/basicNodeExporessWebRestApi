@@ -18,6 +18,7 @@ var getData = function (url) {
 app.get('/api/posts/:post_id', function(req, res) {
   var post_id = parseInt(req.params.post_id, 10);
   var get_all_posts_url = 'https://jsonplaceholder.typicode.com/posts';
+  var comments_per_post = 'https://jsonplaceholder.typicode.com/posts/' + post_id + '/comments'
   console.log('post_id= ', post_id);
   getData(get_all_posts_url).then((html) = function (response) {
     var posts_list = response.body;
