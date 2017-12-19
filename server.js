@@ -3,6 +3,7 @@ var fs = require('fs');
 var app     = express();
 var request = require('request');
 var https = require('https');
+var _ = require('lodash');
 
 var getData = function (url) {
   return new Promise((resolve, reject) => {
@@ -15,15 +16,15 @@ var getData = function (url) {
 };
 
 app.get('/api/posts/:post_id', function(req, res) {
-  var post_id = req.params.post_id;
+  var post_id = parseInt(req.params.post_id, 10);
   var get_all_posts_url = 'https://jsonplaceholder.typicode.com/posts';
-
+  console.log('post_id= ', post_id);
   getData(get_all_posts_url).then((html) = function (response) {
     var posts_list = response.body;
-    // var post = _.find(posts_list, function (post) {
-    //   return id === post_id;
-    // })
-    res.json({'posts' : posts_list});
+    var post = _.find(posts_list, function (post) {
+      return post.id === post_id;
+    })
+    res.json({'posts' : post});
   }).catch((err) = function (reject) {
     res.json({'error' : reject});
   });

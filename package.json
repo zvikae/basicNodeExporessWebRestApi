@@ -1,14 +1,14 @@
 {
-  "name"         : "node-exporess",
-  "version"      : "0.0.1",
-  "description"  : "Simple node express.",
-  "main"         : "server.js",
-  "author"       : "Zvi",
-  "dependencies" : {
-    "express"    : "~4.7.2",
-    "morgan"     : "~1.2.2",
+  "name": "node-exporess",
+  "version": "0.0.1",
+  "description": "Simple node express.",
+  "main": "server.js",
+  "author": "Zvi",
+  "dependencies": {
     "body-parser": "~1.5.2",
+    "express": "~4.7.2",
+    "lodash": "^4.17.4",
     "method-override": "~2.1.2",
-    "lodash": "latest"
-    }
+    "morgan": "~1.2.2"
+  }
 }
