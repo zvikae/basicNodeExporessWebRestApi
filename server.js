@@ -4,9 +4,9 @@ var app     = express();
 var request = require('request');
 var https = require('https');
 
-var getComments = function () {
+var getData = function (url) {
   return new Promise((resolve, reject) => {
-    request('https://jsonplaceholder.typicode.com/comments', { json: true }, (err, response, body) => {
+    request(url, { json: true }, (err, response, body) => {
       if (err) { reject(err); }
       resolve(response);
     });
@@ -14,13 +14,16 @@ var getComments = function () {
 
 };
 
-app.get('/test', function(req, res) {
-  var arr = 'https://jsonplaceholder.typicode.com/comments';
-  var params = {
-    data: 'Test Express'
-  }
-  getComments().then((html) = function (response) {
-    res.json({'moshe' : response});
+app.get('/api/posts/:post_id', function(req, res) {
+  var post_id = req.params.post_id;
+  var get_all_posts_url = 'https://jsonplaceholder.typicode.com/posts';
+
+  getData(get_all_posts_url).then((html) = function (response) {
+    var posts_list = response.body;
+    // var post = _.find(posts_list, function (post) {
+    //   return id === post_id;
+    // })
+    res.json({'posts' : posts_list});
   }).catch((err) = function (reject) {
     res.json({'error' : reject});
   });
