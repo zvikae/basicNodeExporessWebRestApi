@@ -12,22 +12,33 @@ var getData = function (url) {
       resolve(response);
     });
   });
+};
 
+var removePostIdFromComments = function (comments) {
+  var comments = _.map(comments, function(o) { return _.omit(o, 'postId'); });
+  return comments;
 };
 
 app.get('/api/posts/:post_id', function(req, res) {
   var post_id = parseInt(req.params.post_id, 10);
   var get_all_posts_url = 'https://jsonplaceholder.typicode.com/posts';
   var comments_per_post = 'https://jsonplaceholder.typicode.com/posts/' + post_id + '/comments'
-  console.log('post_id= ', post_id);
-  getData(get_all_posts_url).then((html) = function (response) {
-    var posts_list = response.body;
+  Promise.all([
+    getData(get_all_posts_url),
+    getData(comments_per_post),
+  ])
+  .then(([result1, result2]) => {
+    var posts_list = result1.body;
     var post = _.find(posts_list, function (post) {
       return post.id === post_id;
     })
-    res.json({'posts' : post});
-  }).catch((err) = function (reject) {
-    res.json({'error' : reject});
+    var comments = removePostIdFromComments(result2.body);
+    post['comments'] = comments
+    res.json({'post' : post});
+  })
+  .catch(err => {
+      // Receives first rejection among the Promises
+      res.json({'error' : err});
   });
 
 })
