@@ -4,6 +4,8 @@ var app     = express();
 var request = require('request');
 var https = require('https');
 var _ = require('lodash');
+app.use(express.static(__dirname + '/public'));  
+
 
 var getData = function (url) {
   return new Promise((resolve, reject) => {
