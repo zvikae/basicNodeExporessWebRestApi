@@ -9,3 +9,14 @@
 .search-form {
   margin-top:  15px;
 }
+.post-key {
+  font-weight: bold;
+  display: inline-block;
+  text-transform: capitalize;
+}
+.post-data {
+  display: inline-block;
+}
+.post-container {
+  margin-bottom: 20px;
+}

@@ -1,12 +1,13 @@
 <html>
   <head>
   <meta charset="utf-8">
-    <title>BasicNode</title>
+    <title>Get Post & Comments</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/sandstone/bootstrap.min.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
   </head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js"></script>
+    <script src="https://cdn.jsdelivr.net/lodash/4.16.4/lodash.min.js"></script>
     <script src="app.js"></script>
   <body ng-app = 'myApp' ng-controller = 'myCtrl' ng-init = 'init()'>
     <div class = 'main-wrapper'>
@@ -18,6 +19,12 @@
         </form>
       </div>
       <div ng-hide = 'error.show'>
+        <div class = 'post-container'>
+          <div ng-repeat = 'post_key in post_keys'>
+            <div class = 'post-key'>{{post_key}}: </div>
+            <div class = 'post-data'>{{post_data[post_key]}}</div>
+          </div>
+        </div>
         <table class="table table-bordered table-striped">
           <thead>
             <tr>
