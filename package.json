@@ -1,14 +1,17 @@
 {
-  "name": "node-exporess",
+  "name": "posts_and_comments",
   "version": "0.0.1",
-  "description": "Simple node express.",
+  "description": "Get posts & comments",
   "main": "server.js",
-  "author": "Zvi",
+  "author": "Zvi Epstein",
   "dependencies": {
     "body-parser": "~1.5.2",
     "express": "~4.7.2",
     "lodash": "^4.17.4",
     "method-override": "~2.1.2",
     "morgan": "~1.2.2"
+  },
+   "scripts": {
+    "start": "node server.js"
   }
 }
