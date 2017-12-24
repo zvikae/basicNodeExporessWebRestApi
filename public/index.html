@@ -3,12 +3,39 @@
   <meta charset="utf-8">
     <title>BasicNode</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/sandstone/bootstrap.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
   </head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js"></script>
     <script src="app.js"></script>
   <body ng-app = 'myApp' ng-controller = 'myCtrl' ng-init = 'init()'>
-  <div>
-    {{firstName}}
-  </div>
+    <div class = 'main-wrapper'>
+      <div class = 'main-title'>Get comments by post</div>
+      <div class = 'search-form'>
+        <form ng-submit = 'getComments()'>
+          <input type="text" ng-model="post_id">
+          <input type="submit" value="Get comments">
+        </form>
+      </div>
+      <div ng-hide = 'error.show'>
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <td ng-repeat = 'header in table_headers'>
+                {{header}}
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="comment in table_data">
+              <td ng-repeat = 'header in table_headers'>{{comment[header]}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div ng-show = 'error.show'>
+        {{error.msg}}
+      </div>
+    </div>
   </body>
 </html>
