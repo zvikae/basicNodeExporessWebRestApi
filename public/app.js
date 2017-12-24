@@ -41,7 +41,6 @@ app.controller('myCtrl', ['$scope', '$http', function($scope, $http) {
   };
 
   self.resolveGetComments = function (resolve) {
-    console.log(resolve.data.post);
     self.initCommentsData(resolve);
     self.initPostData(resolve);
   };
