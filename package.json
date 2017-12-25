@@ -9,7 +9,10 @@
     "express": "~4.7.2",
     "lodash": "^4.17.4",
     "method-override": "~2.1.2",
-    "morgan": "~1.2.2"
+    "morgan": "~1.2.2",
+    "request": "*",
+    "https": "*"
+
   },
    "scripts": {
     "start": "node server.js"
